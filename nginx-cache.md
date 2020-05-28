@@ -1,7 +1,6 @@
 # Example Nginx caching reverse proxy configuration
 
-1. Nginx cache configuration
-> It configures nginx cache and it's directory
+1. Configure nginx cache and it's directory
 
 **/etc/nginx/conf.d/lact-resizer.conf**
 ```
@@ -10,9 +9,7 @@
 proxy_cache_path /var/lact-resizer-cache-dir levels=1:2 keys_zone=lact-resizer-cache:50m max_size=10g inactive=12h use_temp_path=off;
 ```
 
-2. Location configuration
-
-> It maps /resizer/ path to our resizer instance (running on port 3100, please change if required).
+2. Map /resizer/ url path to lact-resizer instance (running on port 3100, change if required).
 
 **/etc/nginx/snippets/location-lact-resizer.conf**
 ```
@@ -33,9 +30,7 @@ location /resizer/ {
 ```
 
 
-3. Server configuration
-
-Add following into desired nginx server configuration:
+3. Add location into desired nginx server configuration:
 ```
 server {
   ...
