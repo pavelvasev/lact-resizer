@@ -1,0 +1,33 @@
+{
+  "name": "resizer-lact",
+  "version": "1.0.0",
+  "description": "On the fly image resizer based on nodejs and graphicsmagic",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavelvasev/resizer-lact.git"
+  },
+  "keywords": [
+    "image",
+    "resizer",
+    "on-the-fly",
+    "nodejs",
+    "graphicsmagic",
+    "fit",
+    "crop"
+  ],
+  "author": "Pavel Vasev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pavelvasev/resizer-lact/issues"
+  },
+  "homepage": "https://github.com/pavelvasev/resizer-lact#readme",
+  "dependencies": {
+    "gm": "^1.23.1",
+    "mime-types": "^2.1.27"
+  }
+}
