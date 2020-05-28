@@ -10,6 +10,7 @@ var gm = require('gm');
 var mime = require('mime-types');
 const http = require('http');
 const port = parseInt( process.env.RESIZER_PORT || "3001" );
+const iface = process.env.RESIZER_BIND || "127.0.0.1";
 const fs = require('fs');
 
 //////////////////////////////////////////////// transformsrc function
@@ -113,7 +114,8 @@ const requestHandler = (req, res) => {
 ////////////////////////////////////////////// http server
 const server = http.createServer(requestHandler)
 
-server.listen(port, process.env.RESIZER_BIND || "127.0.0.1", (err) => {
+
+server.listen(port, iface, (err) => {
   if (err) return console.log('something bad happened', err)
-  console.log(`resizer server is listening on local ${port}`)
+  console.log(`resizer server is listening on http://${iface}:${port}/ serving dir ${filedir}`)
 })
