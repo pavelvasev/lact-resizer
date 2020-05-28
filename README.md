@@ -15,18 +15,22 @@ On the fly image resizer (nodejs webserver).
 `RESIZER_PORT=3100 RESIZER_DIR=/data/my-images RESIZER_BIND=127.0.0.1 npm start`
 
 Result: running webserver instance ready to respond to GET http requests like
-`http://127.0.0.1:3100/fit/240/240/my/image/path.jpg`
+
+* `http://127.0.0.1:3100/fit/240/240/my/image/path.jpg`
+
 which will return a 240x240 resized version of `/data/my-images/my/image/path.jpg`.
 
 # Request format
 
-`http://127.0.0.1:3100/:command/:width/:height/:path-inside-dir.jpg`
+`http://RESIZER_BIND:RESIZER_PORT/:command/:width/:height/:path-inside-dir.jpg`
 
 Commands available:
 * **fit** -- fit image inside box.
 * **crop** -- crop image to box.
 * **croputl** -- crop image unless it too long in some dimension.
 * (add yours in server.js)
+
+* **path-inside-dir** may contain /-slashes.
 
 # Variables
 
