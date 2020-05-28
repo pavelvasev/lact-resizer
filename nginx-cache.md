@@ -1,14 +1,20 @@
-# Nginx caching reverse proxy configuration
+# Example Nginx caching reverse proxy configuration
 
-1. **/etc/nginx/conf.d/lact-resizer.conf**
+1. Nginx cache configuration
+> It configures nginx cache and it's directory
+
+**/etc/nginx/conf.d/lact-resizer.conf**
 ```
 # https://www.nginx.com/blog/nginx-caching-guide/
 # https://serverfault.com/a/641572 (about inactive vs proxy_cache_valid)
-proxy_cache_path /var/lact-resizer-cache levels=1:2 keys_zone=lact-resizer-cache:50m max_size=10g inactive=12h use_temp_path=off;
+proxy_cache_path /var/lact-resizer-cache-dir levels=1:2 keys_zone=lact-resizer-cache:50m max_size=10g inactive=12h use_temp_path=off;
 ```
-- this is nginx cache configuration
 
-2. **/etc/nginx/snippets/location-lact-resizer.conf**
+2. Location configuration
+
+> It maps /resizer/ path to our resizer instance (running on port 3100, please change if required).
+
+**/etc/nginx/snippets/location-lact-resizer.conf**
 ```
 location /resizer/ {
      rewrite ^/resizer/(.*) /$1  break;
@@ -25,16 +31,19 @@ location /resizer/ {
      expires max;
    }
 ```
-- this is location configuration that will map /resizer/ path to our resizer instance (running on port 3100, please change if required)
 
-3. Add to some nginx server configuration:
+
+3. Server configuration
+
+Add following into desired nginx server configuration:
 ```
+server {
   ...
   include snippets/location-lact-resizer.conf*;
   ...
+}
 ```
-- this will add location to desired server configuration
 
-## Done
+4. Done
 
 2020 Pavel Vasev
