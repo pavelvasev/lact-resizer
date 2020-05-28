@@ -4,17 +4,17 @@ On the fly image resizer (nodejs webserver).
 
 * Resizes images from local directory.
 * Uses graphicsmagick in streaming mode.
-* No caching -- consider some external caching frontend.
+* No caching - consider using some external caching frontend.
 
 # Prepare
 
 `npm install`
 
-# Usage
+# Run
 
 `RESIZER_PORT=3100 RESIZER_DIR=/data/my-images RESIZER_BIND=127.0.0.1 npm start`
 
-Result: running webserver instance ready to respond on GET http requests like
+Result: running webserver instance ready to respond to GET http requests like
 `http://127.0.0.1:3100/fit/240/240/my/image/path.jpg`
 which will return a 240x240 resized version of `/data/my-images/my/image/path.jpg`.
 
@@ -27,6 +27,12 @@ Commands available:
 * **crop** -- crop image to box.
 * **croputl** -- crop image unless it too long in some dimension.
 * (add yours in server.js)
+
+# Variables
+
+* **RESIZER_DIR** - directory to where get images from.
+* **RESIZER_PORT** - port to bind to.
+* **RESIZER_BIND** - interface to bind to.
 
 # Caching proxy configuration
 
