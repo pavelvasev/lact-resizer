@@ -30,7 +30,7 @@ Commands available:
 * **croputl** -- crop image unless it too long in some dimension.
 * (add yours in server.js)
 
-* **path-inside-dir** may contain /-slashes.
+**path-inside-dir** may contain /-slashes.
 
 # Variables
 
