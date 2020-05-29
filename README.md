@@ -40,7 +40,7 @@ Commands available:
 
 # Caching proxy configuration
 
-* [Nginx](nginx-cache.md)
+* [Nginx](nginx-cache)
 
 # Regards
 
