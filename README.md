@@ -7,8 +7,10 @@ On the fly image resizer (nodejs webserver).
 * No caching - consider using some external caching frontend.
 
 # Prepare
-
-`npm install`
+```
+apt-get install graphicsmagic
+npm install
+```
 
 # Run
 
