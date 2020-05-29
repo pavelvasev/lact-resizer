@@ -44,8 +44,8 @@ Commands available:
 
 # Regards
 
-https://blog.bandwidth.com/weekend-coding-streaming-image-manipulations-with-node-js/
-https://blog.campvanilla.com/nodejs-graphicsmagick-cropping-resizing-server-api-b410fe98e41
+* https://blog.bandwidth.com/weekend-coding-streaming-image-manipulations-with-node-js/
+* https://blog.campvanilla.com/nodejs-graphicsmagick-cropping-resizing-server-api-b410fe98e41
 
 # Author
 
