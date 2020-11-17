@@ -87,17 +87,24 @@ const requestHandler = (req, res) => {
   var contenttype = mime.lookup(src);
   
   var src_no_suffix = src.replace(/\[\d+\]$/,"");
-  
+
+  console.log(`${new Date().toISOString()} request ${req.url} cmd=${cmd} w=${w} h=${h} src=${src} contenttype=${contenttype}`);
+
+  if (!(typeof(contenttype) == "string" && contenttype.startsWith("image/"))) {
+    res.writeHead( 400 );
+    res.end("invalid content type of source file, it should be an image.");
+    console.log("   INVALID CONTENT TYPE of source file, it should be an image. value=",contenttype,"typeof=",typeof(contenttype),"src=",src);
+    return;
+  }
+ 
   fs.access(src_no_suffix, fs.F_OK, function(err) {
     if (err) {
-      console.log(`${new Date().toISOString()} request ${req.url} cmd=${cmd} w=${w} h=${h} src=${src} contenttype=${contenttype} SOURCE FILE NOT FOUND`);
+      console.log(`   SOURCE FILE NOT FOUND`,src_no_suffix);
       //console.error(err);
       res.statusCode=404;
       res.end();
       return;
     }
-  
-    console.log(`${new Date().toISOString()} request ${req.url} cmd=${cmd} w=${w} h=${h} src=${src} contenttype=${contenttype}`);
   
     res.writeHead(200, {'Content-Type': contenttype});
   
