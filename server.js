@@ -73,6 +73,12 @@ function gmcroputl(req,res,cmd,w,h,src) {
     });
 }
 
+// ничего не делаем, выдаем файл
+function identity(req,res,cmd,w,h,src) {
+  const fileStream = fs.createReadStream(src);
+  return fileStream.pipe(res);
+}
+
 
 //////////////////////////////////////////////// requestHandler function -- param parsing and call image functions
 
@@ -86,7 +92,7 @@ const requestHandler = (req, res) => {
   src = transformsrc(src);
   var contenttype = mime.lookup(src);
   
-  var src_no_suffix = src.replace(/\[\d+\]$/,"");
+  var src_no_suffix = src.replace(/\[\d+\]$/,""); // видимо был странный суффикс типа [123]
 
   console.log(`${new Date().toISOString()} request ${req.url} cmd=${cmd} w=${w} h=${h} src=${src} contenttype=${contenttype}`);
 
@@ -112,6 +118,8 @@ const requestHandler = (req, res) => {
     if (cmd === "fit")  f=gmfit;
     if (cmd === "crop") f=gmcrop;
     if (cmd === "croputl") f=gmcroputl;
+    
+    if (contenttype.startsWith("image/svg")) f=identity;
   
     if (f) return f( req,res,cmd,w,h,src );
     res.end('Hello!');
